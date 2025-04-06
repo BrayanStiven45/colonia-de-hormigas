@@ -3,6 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import tsplib95
 from tsplib95 import load
+import time
 
 class TSP:
 
@@ -103,6 +104,7 @@ class TSP:
       maxIter = self.n_iters
       n_ants = self.n_ants
 
+      inicio = time.time()
       for iter in range(maxIter):
          paths = []
          path_lengths = []
@@ -137,25 +139,25 @@ class TSP:
                S[current_city] = True
 
          
-         path_length += d[current_city, path[0]]
-         path.append(path[0])
+            path_length += d[current_city, path[0]]
+            path.append(path[0])
 
-         #las arc
+            #las arc
 
-         # path_length += d[current_city, path[0]]
-         #print(path_length)
-         paths.append(path)
-         path_lengths.append(path_length)
-         # print(paths)
+            # path_length += d[current_city, path[0]]
+            #print(path_length)
+            paths.append(path)
+            path_lengths.append(path_length)
+            # print(paths)
 
-         if path_length < best_p_length:
-            best_p_length = path_length
-            best_path = path
+            if path_length < best_p_length:
+               best_p_length = path_length
+               best_path = path
 
          #updating pheromones (tho)
          tho *= (1-self.ro)
 
-      #reinforce factor
+         #reinforce factor
          for path, path_length in zip(paths, path_lengths):
             # print(f'Path: {path}, path_length: {path_length}')
             for i in range(n - 1):
@@ -165,7 +167,10 @@ class TSP:
       self.best_path = best_path
       self.best_p_lenght = float(best_p_length)
 
-      return self.best_path, self.best_p_lenght
+      fin = time.time()
+      total_time = fin - inicio
+
+      return self.best_path, self.best_p_lenght, total_time
    
    def get_cities(self):
       """
