@@ -4,7 +4,7 @@ tsp = TSP()
 
 # Load the TSP instance from a file using tsplib95 
 # and set the parameters for the algorithm path_file, n_ants, n_iters, alpha, beta, ro
-tsp.load_initial_variables("initializer_files/burma14.tsp", 25, 1500, 0.8, 1.2, 0.15)
+tsp.load_initial_variables("initializer_files/ulysses22.tsp", 50, 2000, 0.6, 1.5, 0.2)
 
 best_path, best_lenght, total_time = tsp.solve()
 distances = tsp.get_distances()
