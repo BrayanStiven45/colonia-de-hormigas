@@ -42,28 +42,10 @@ class TSP:
       nodes = problem.node_coords # Load the coordinates of the nodes
       cities = np.array([cord[1] for cord in nodes.items()]) # Extract the coordinates
       
-      d = None
-      if problem.edge_weight_type == 'EUC_2D':
-         d = self.euclidian_distances(cities)
-      elif problem.edge_weight_type == 'GEO':
-         d = self.geo_distances(problem, len(cities))
-      else:
-         raise ValueError(f"Unknown edge weight type: {problem.edge_weight_type}")
+      d = self.get_distances(problem, len(cities))
       return cities, d
-
    
-
-   def euclidian_distances(self, cities: list):
-      
-      n=len(cities)
-      d=np.zeros([n,n])
-      for i in range(n):
-            for j in range(n):
-                  d[i,j]=np.linalg.norm(cities[i]-cities[j]) 
-
-      return d
-   
-   def geo_distances(self, cities: tsplib95, n: int):
+   def get_distances(self, cities: tsplib95, n: int):
 
       d = np.zeros([n,n])
       
