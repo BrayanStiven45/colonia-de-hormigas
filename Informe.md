@@ -17,7 +17,7 @@
   - [Descripción del Algoritmo de Colonias de Hormigas (ACO) en Python](#descripción-del-algoritmo-de-colonias-de-hormigas-aco-en-python)
     - [Se importan las librerías necesarias para realizar el algoritmo](#se-importan-las-librerías-necesarias-para-realizar-el-algoritmo)
     - [Se crea la clase TSP](#se-crea-la-clase-tsp)
-  - [Resultados](#resultados)
+  - [Pruebas](#pruebas)
     - [Instancias Pequeñas:](#instancias-pequeñas)
       - [Tablas](#tablas)
       - [Gráficas](#gráficas)
@@ -110,14 +110,87 @@ En la clase TSP se agrupan todos los métodos necesarios para resolver el proble
 
       - **best_path y best_p_length:** variables para guardar la mejor solución encontrada.
 
+    - **Bucle principal de iteraciones:**
+      <pre> for iter in range(maxIter): </pre>
+
+      Se ejecutan **maxIter** iteraciones. En cada una, varias hormigas generarán soluciones y se actualizarán las feromonas.
+
+    - **Simulación del movimiento de cada hormiga:**
+      <pre> for ant in range(n_ants): </pre>
+
+      Para cada hormiga:
+
+        Se elige una ciudad inicial aleatoriamente.
+
+        Se construye una ruta eligiendo ciudades no visitadas basándose en la probabilidad de transición pij, que considera:
+
+        La cantidad de feromonas en el camino (entre más alta, más atractiva).
+
+        La inversa de la distancia entre ciudades (entre más corta, más atractiva).
+
+      <pre> pij[j] = tho[current_city, unvisited_city]**self.alpha * (1/d[current_city, unvisited_city])**self.beta
+          pij /= np.sum(pij)
+          next_city = np.random.choice(unvisited, p=pij)</pre>
+
+      alpha y beta controlan la influencia relativa de la feromona y la distancia, respectivamente.
+
+      Se acumula la distancia (**path_length**) y se marca la ciudad como visitada.
+
+    - **Cierre del ciclo:**
+      Una vez la hormiga ha recorrido todas las ciudades:
+
+      <pre>path_length += d[current_city, path[0]]
+        path.append(path[0])</pre>
+
+
+      Se regresa a la ciudad de origen para completar el ciclo.
+
+      Se guarda la ruta y su longitud.
+
+      Si la nueva ruta es mejor que la mejor conocida, se actualiza **best_path** y **best_p_length**.
+
+    - **Actualización de feromonas:**
+
+      Después de que todas las hormigas han completado su ruta:
+
+      <pre> tho *= (1 - self.ro) </pre>
+
+      **Evaporación**: Se reduce la cantidad de feromonas en todos los caminos, simulando el tiempo.
+
+      <pre> for path, path_length in zip(paths, path_lengths):
+          for i in range(n - 1):
+              tho[path[i], path[i + 1]] += delta / path_length
+          tho[path[-1], path[0]] += delta / path_length </pre>
+
+      **Refuerzo**: Se agrega feromona adicional a los caminos usados, con mayor cantidad en rutas más cortas (mejores).
+
+    - **Resultados:**
+
+      <pre>self.best_path = best_path
+      self.best_p_lenght = float(best_p_length)
+      fin = time.time()
+      total_time = fin - inicio </pre>
+
+      Se guarda la mejor solución encontrada y se calcula el tiempo total de ejecución del algoritmo.
+
+      <pre>return self.best_path, self.best_p_lenght, total_time</pre>
+
+      Finalmente, el método retorna:
+
+      La mejor ruta (**best_path**).
+
+      La distancia total de esa ruta (**best_p_length**).
+
+      El tiempo de ejecución (**total_time**).
+
   - **Visualización:**
 
-    Para facilitar la interpretación de la solución, se implementa el método graph_soluction, que utiliza matplotlib para mostrar gráficamente el recorrido óptimo, dibujando flechas entre las ciudades según el orden de visita.
+    Para facilitar la interpretación de la solución, se implementa el método **graph_soluction**, que utiliza matplotlib para mostrar gráficamente el recorrido óptimo, dibujando el recorrido entre cada una de las ciudades.
 
 Esta estructura modular en la clase TSP permite no solo organizar mejor el código, sino también facilita la realización de pruebas cambiando parámetros y evaluando el desempeño del algoritmo en distintas instancias del problema.
 
 
-## Resultados
+## Pruebas
 
 ### Instancias Pequeñas:
 
@@ -270,7 +343,7 @@ Esta estructura modular en la clase TSP permite no solo organizar mejor el códi
     5     |    70    |    2000     |  1.5  | 1.5  | 0.1 | 380.43  | [22, 19, 49, 28, 15, 45, 43, 33, 34, 35, 38, 39, 37, 36, 47, 23, 4, 14, 5, 3, 24, 11, 27, 26, 25, 46, 12, 13, 51, 10, 50, 32, 42, 9, 8, 7, 40, 18, 44, 31, 48, 0, 21, 30, 17, 2, 16, 20, 29, 41, 6, 1, 22]        |    7755     |2.82 
     6     |    80    |    2000     |  1.5  | 1.5  | 0.2 | 497.502 | [45, 43, 33, 34, 35, 38, 39, 37, 36, 47, 23, 4, 14, 5, 3, 24, 11, 27, 26, 25, 46, 12, 13, 51, 10, 50, 32, 42, 9, 8, 7, 40, 18, 44, 31, 48, 0, 21, 30, 17, 2, 16, 20, 41, 6, 1, 29, 22, 19, 49, 15, 28, 45]      |    7679     |1.81 
     7     |    80    |    2000     |  1.0  | 1.0  | 0.2 | 490.30  | [35, 34, 33, 43, 15, 45, 36, 37, 39, 38, 47, 23, 4, 14, 5, 3, 24, 11, 27, 26, 25, 46, 12, 13, 51, 10, 50, 32, 42, 9, 8, 7, 40, 18, 44, 2, 16, 20, 41, 6, 1, 29, 28, 49, 19, 22, 30, 17, 21, 0, 48, 31, 35]  |    7798     |3.39
-    8     |    80    |    2000     |  1.0  | 1.5  | 0.2 |  520.68  | [43, 33, 34, 35, 38, 39, 37, 36, 47, 23, 4, 14, 5, 3, 24, 11, 27, 26, 25, 46, 12, 13, 51, 10, 50, 32, 42, 9, 8, 7, 40, 18, 44, 31, 48, 0, 21, 30, 17, 2, 16, 20, 41, 6, 1, 29, 28, 49, 19, 22, 15, 45, 43]  |    7676     |1.78
+    8 |    90    |    2000     |  1.0  | 1.5  | 0.2 |  361.75  | [45, 47, 23, 4, 14, 5, 3, 24, 11, 27, 26, 25, 46, 12, 13, 51, 10, 50, 32, 42, 9, 8, 7, 40, 18, 44, 31, 48, 0, 21, 30, 17, 2, 16, 20, 41, 6, 1, 29, 22, 19, 49, 28, 15, 43, 33, 34, 35, 38, 39, 37, 36, 45]  |7596  |0.72
     9 |    20    |    1000     |  0.5  | 0.5  | 0.1 |  58.18  |   |  |
     10|    20    |    1000     |  0.5  | 0.5  | 0.1 |  58. 18 |   |  |
 - **KroA100:** 
