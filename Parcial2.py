@@ -42,10 +42,10 @@ class TSP:
       nodes = problem.node_coords # Load the coordinates of the nodes
       cities = np.array([cord[1] for cord in nodes.items()]) # Extract the coordinates
       
-      d = self.get_distances(problem, len(cities))
+      d = self.calculate_distances(problem, len(cities))
       return cities, d
    
-   def get_distances(self, cities: tsplib95, n: int):
+   def calculate_distances(self, cities: tsplib95, n: int):
 
       d = np.zeros([n,n])
       

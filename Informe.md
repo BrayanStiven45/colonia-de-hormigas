@@ -1,3 +1,59 @@
+# 🐜 Algoritmo de Colonias de Hormigas para el Problema del Agente Viajero (TSP)
+### 📌 Informe técnico desarrollado en Python
+
+## 📚 Tabla de Contenido
+- [🐜 Algoritmo de Colonias de Hormigas para el Problema del Agente Viajero (TSP)](#-algoritmo-de-colonias-de-hormigas-para-el-problema-del-agente-viajero-tsp)
+    - [📌 Informe técnico desarrollado en Python](#-informe-técnico-desarrollado-en-python)
+  - [📚 Tabla de Contenido](#-tabla-de-contenido)
+  - [📌 Introducción](#-introducción)
+  - [🧭 Descripción del Problema TSP](#-descripción-del-problema-tsp)
+  - [🐜 Descripción del Algoritmo de Colonias de Hormigas (ACO)](#-descripción-del-algoritmo-de-colonias-de-hormigas-aco)
+  - [Resultados](#resultados)
+    - [Instancias Pequeñas:](#instancias-pequeñas)
+      - [Tablas](#tablas)
+      - [Gráficas](#gráficas)
+      - [Concluciones](#concluciones)
+    - [Instancias Medianas:](#instancias-medianas)
+      - [Tablas](#tablas-1)
+
+## 📌 Introducción
+
+En este informe se aborda la implementación del algoritmo de Colonias de Hormigas (Ant Colony Optimization, ACO) para resolver el Problema del Agente Viajero (TSP). El objetivo del TSP es encontrar la ruta más corta posible que permita visitar un conjunto de ciudades una sola vez y regresar al punto de partida. Aunque puede parecer sencillo, este problema se vuelve muy complejo a medida que aumenta el número de ciudades, por lo que se utilizan algoritmos metaheurísticos para encontrar soluciones aproximadas.
+
+El algoritmo de Colonias de Hormigas se basa en el comportamiento real de las hormigas cuando buscan comida. A través de la simulación del rastro y evaporación de feromonas, las hormigas artificiales logran construir rutas que, con el tiempo, tienden a mejorar y acercarse a la solución óptima.
+
+La implementación fue desarrollada en Python, utilizando una estructura general del algoritmo vista en clase y que se fue implementando en python en el transcurso de la materia, con algunas adaptaciones necesarias. Para las pruebas, se usaron nueve archivos con extensión .tsp obtenidos del repositorio TSPLIB95, los cuales contienen instancias de diferentes tamaños: pequeñas (de 10 a 20 ciudades), medianas (de 50 a 100 ciudades), y grandes (más de 100 ciudades).
+
+A lo largo del trabajo se realizaron distintos experimentos con los parámetros del algoritmo (como el número de hormigas, el valor de alfa y beta, la tasa de evaporación, entre otros) y se evaluó el rendimiento en función del tiempo de ejecución, la calidad de la solución, y la cercanía a la solución óptima. El propósito de este informe es poner en práctica lo aprendido en clase sobre metaheurísticas y demostrar cómo un algoritmo bioinspirado puede ser una alternativa eficiente frente a problemas difíciles de resolver por métodos exactos.
+
+## 🧭 Descripción del Problema TSP
+El Problema del Agente Viajero (TSP) busca encontrar la ruta más corta para visitar un conjunto de ciudades exactamente una vez y regresar al punto de partida. Aunque parece simple, es un problema complejo ya que el número de posibles rutas crece rápidamente con más ciudades.
+
+Este tipo de problema es muy común en áreas como logística y planificación de rutas. No hay un método eficiente para resolverlo de forma exacta cuando las instancias son grandes.
+
+En este trabajo se usaron archivos .tsp del repositorio TSPLIB95, que contienen las coordenadas de las ciudades. A partir de estos datos, se aplicó el algoritmo de Colonias de Hormigas para encontrar la solución optima o soluciones aproximadas al problema.
+
+## 🐜 Descripción del Algoritmo de Colonias de Hormigas (ACO)
+El algoritmo de Colonias de Hormigas (Ant Colony Optimization o ACO) se basa en cómo las hormigas reales encuentran caminos cortos entre su nido y una fuente de alimento. En este caso, usamos esa lógica para encontrar rutas óptimas en el problema del Agente Viajero (TSP).
+
+Cada “hormiga” del algoritmo representa una posible solución: una ruta que recorre todas las ciudades. Las decisiones de cada hormiga se basan en dos cosas: la cantidad de feromonas (que refleja qué tan buena ha sido una ruta) y la distancia (preferimos rutas más cortas). Al finalizar cada iteración, se actualizan las feromonas: se evaporan un poco, pero se refuerzan en los caminos más prometedores.
+
+A continuación se explicara detalladamente la implementación:
+
+import numpy as np
+import matplotlib.pyplot as plt
+import tsplib95
+from tsplib95 import load
+import time
+
+Se importan las librerias necesarias para realizar el algoritmo, donde la libreria numpy nos permite trabajar con matrices, esto es ecencial al momento de crear la matriz de distancias y poder hacer operaciones matriciales con este.
+
+Con matplotlib nos permite graficar la ruta encontrada tras realizar el algoritmo.
+
+La libreria tsplib95 nos permite poder leer los archivos .tsp y seguidamente poder sacar las distancias entre ciudades del mismo archivo
+
+La libreria time nos permite tomar el tiempo de ejcución que le toma al algoritmo completarce
+
 ## Resultados
 
 ### Instancias Pequeñas:
@@ -66,7 +122,7 @@
 
 - **Ulysses22:** Mejor ruta encontrada en el problema Ulysses22
 
-    ![Ulysses22](Graficas\qwkdjkjjiwjsijsiusiquUlysses22-8.png)
+    ![Ulysses22](Graficas\Ulysses22-8.png)
 
 #### Concluciones
 
@@ -142,9 +198,25 @@
   
   **Optimal path length 7542**
   
+    Config| Hormigas | Iteraciones | Alpha | Beta | Ro  | Time(s) |  Path     | Path Length | Gap (%)
+    :----:|:--------:|:-----------:|:-----:|:----:|:---:|:-------:|:---------:|:-----------:|:---:
+    1     |     70   |    1000     |  1.0  | 1.0  | 0.5 | 186.97  | [40, 7, 44, 18, 2, 16, 20, 41, 6, 1, 29, 28, 49, 19, 22, 30, 17, 21, 0, 48, 31, 43, 15, 45, 36, 39, 38, 35, 34, 33, 37, 47, 23, 4, 14, 5, 3, 24, 11, 27, 26, 25, 46, 12, 13, 51, 10, 50, 32, 42, 9, 8, 40]        |    7997     |6.03 
+    2     |    70    |    1000     |  0.6  | 1.0  | 0.4 | 189.38  | [40, 7, 18, 44, 31, 48, 38, 35, 34, 33, 0, 21, 30, 17, 22, 19, 49, 28, 25, 27, 26, 46, 13, 51, 12, 10, 50, 11, 24, 3, 5, 47, 23, 14, 37, 36, 4, 39, 43, 15, 29, 2, 16, 1, 6, 41, 20, 45, 42, 32, 9, 8, 40]    |    9829     |30.32 
+    3     |    70    |    1000     |  1.0  | 1.5  | 0.5 | 192.07  | [7, 40, 18, 44, 31, 48, 0, 21, 30, 17, 2, 16, 20, 41, 6, 1, 29, 28, 49, 19, 22, 15, 45, 43, 33, 34, 35, 38, 39, 37, 36, 47, 23, 4, 14, 5, 3, 24, 11, 27, 26, 25, 46, 12, 13, 51, 10, 50, 32, 42, 9, 8, 7]         |    7676     |1.78 
+    4     |    70    |    2000     |  1.0  | 1.5  | 0.2 | 387.95  | [22, 19, 49, 15, 45, 43, 33, 34, 35, 38, 39, 37, 36, 47, 23, 4, 14, 5, 3, 24, 11, 27, 26, 25, 46, 12, 13, 51, 10, 50, 32, 42, 9, 8, 7, 40, 18, 44, 31, 48, 0, 21, 30, 17, 2, 16, 20, 41, 6, 1, 29, 28, 22]      |    7662     |1.59 
+    5     |    70    |    2000     |  1.5  | 1.5  | 0.1 | 380.43  | [22, 19, 49, 28, 15, 45, 43, 33, 34, 35, 38, 39, 37, 36, 47, 23, 4, 14, 5, 3, 24, 11, 27, 26, 25, 46, 12, 13, 51, 10, 50, 32, 42, 9, 8, 7, 40, 18, 44, 31, 48, 0, 21, 30, 17, 2, 16, 20, 29, 41, 6, 1, 22]        |    7755     |2.82 
+    6     |    80    |    2000     |  1.5  | 1.5  | 0.2 | 497.502 | [45, 43, 33, 34, 35, 38, 39, 37, 36, 47, 23, 4, 14, 5, 3, 24, 11, 27, 26, 25, 46, 12, 13, 51, 10, 50, 32, 42, 9, 8, 7, 40, 18, 44, 31, 48, 0, 21, 30, 17, 2, 16, 20, 41, 6, 1, 29, 22, 19, 49, 15, 28, 45]      |    7679     |1.81 
+    7     |    80    |    2000     |  1.0  | 1.0  | 0.2 | 490.30  | [35, 34, 33, 43, 15, 45, 36, 37, 39, 38, 47, 23, 4, 14, 5, 3, 24, 11, 27, 26, 25, 46, 12, 13, 51, 10, 50, 32, 42, 9, 8, 7, 40, 18, 44, 2, 16, 20, 41, 6, 1, 29, 28, 49, 19, 22, 30, 17, 21, 0, 48, 31, 35]  |    7798     | 
+    8 |    20    |    1000     |  0.5  | 0.5  | 0.1 |  58.18  |   |  |
+    9 |    20    |    1000     |  0.5  | 0.5  | 0.1 |  58.18  |   |  |
+    10|    20    |    1000     |  0.5  | 0.5  | 0.1 |  58. 18 |   |  |
+- **KroA100:** 
+  
+  **Optimal path length 21282**
+  
     Config|Hormigas|Iteraciones|Alpha |Beta | Ro  |Time(s)| Path        |Path Length | Gap (%)
     :----:|:------:|:---------:|:----:|:---:|:---:|:-----:|:-----------:|:----------:|:---:
-    1     |60      | 1000      |1.0   |1.0  |0.5  |885.91  | [2, 16, 20, 41, 6, 1, 29, 28, 49, 19, 22, 30, 17, 21, 0, 48, 31, 35, 34, 33, 43, 15, 45, 36, 38, 39, 37, 47, 23, 4, 14, 5, 3, 24, 11, 27, 26, 25 4, 14, 5, 3, 24, 11, 27, 26, 25, 46, 13, 12, 51, 10, 50, 32, 42, 9, 8, 40, 7, 18, 44, 2]    | 7839.28   |3.94 
+    1     |50      | 1000      |1.0   |1.0  |0.5  |3451.78 | [45, 28, 33, 82, 54, 6, 8, 50, 86, 56, 19, 11, 26, 85, 34, 61, 59, 76, 22, 97, 90, 44, 31, 10, 16, 14, 58, 73, 20, 71, 9, 83, 35, 37, 23, 17, 78, 52, 87, 15, 21, 93, 69, 65, 64, 3, 25, 96, 55, 79, 30, 88, 41, 7, 91, 0, 62, 5, 48, 89, 18, 74, 98, 46, 92, 27, 66, 57, 60, 24, 80, 68, 63, 39, 53, 1, 43, 49, 72, 67, 84, 38, 29, 95, 77, 51, 4, 36, 32, 75, 12, 94, 81, 47, 99, 70, 40, 13, 2, 42, 45]  |23912    |12.36 
     2     |20      | 1000      |0.5   |0.5  |0.1  |58.18  |      |    | 
     3     |20      | 1000      |0.5   |0.5  |0.1  |58.18  |      |    | 
     4     |20      | 1000      |0.5   |0.5  |0.1  |58.18  |      |    | 
