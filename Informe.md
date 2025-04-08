@@ -68,7 +68,7 @@ En la clase TSP se agrupan todos los métodos necesarios para resolver el proble
 
   - **Cargar Parámetros Iniciales:**
 
-    El método load_initial_variables se encarga de recibir y asignar los parámetros iniciales necesarios para ejecutar el algoritmo. Este método recibe los siguientes parámetros:
+    El método **load_initial_variables** se encarga de recibir y asignar los parámetros iniciales necesarios para ejecutar el algoritmo. Este método recibe los siguientes parámetros:
 
     - **file_path (str):** La ruta del archivo .tsp que contiene la instancia del problema.
 
@@ -82,6 +82,39 @@ En la clase TSP se agrupan todos los métodos necesarios para resolver el proble
 
     - **ro (float):** Tasa de evaporación de feromonas, la cual es crucial para evitar que el algoritmo se estanque en soluciones subóptimas.
 
+  - **Carga de la Instancia y Cálculo de Distancias:**
+
+    El método **load_tsp_instance** emplea la librería **tsplib95** para cargar la instancia del **TSP** desde el archivo y extraer las coordenadas de las ciudades. Posteriormente, el método **calculate_distances** se encarga de construir una matriz de distancias entre todas las ciudades utilizando los pesos definidos en el archivo.
+
+  - **Construcción y Evaluación de Soluciones:**
+  
+    El método **solve** representa el corazón del algoritmo ACO para resolver el problema del Agente Viajero (TSP). Aquí se simula el comportamiento de un conjunto de hormigas virtuales que exploran rutas entre ciudades, guiadas por la información de feromonas y la distancia entre nodos.
+
+    Este método sigue la lógica de construir soluciones mediante decisiones probabilísticas y actualizar la información de feromonas para reforzar las mejores rutas encontradas. A continuación se describe su funcionamiento paso a paso:
+
+    - **Preparación e inicialización:**
+      <pre>n = len(self.cities)
+      d = self.distances
+      tho = np.ones([n, n])
+      delta = self.ro
+      best_path = []
+      best_p_length = np.inf </pre>
+      
+      - **n:** número de ciudades.
+
+      - **d:** matriz de distancias entre ciudades.
+
+      - **tho:** matriz de feromonas, inicializada con 1s.
+
+      - **delta:** factor de refuerzo para actualizar feromonas.
+
+      - **best_path y best_p_length:** variables para guardar la mejor solución encontrada.
+
+  - **Visualización:**
+
+    Para facilitar la interpretación de la solución, se implementa el método graph_soluction, que utiliza matplotlib para mostrar gráficamente el recorrido óptimo, dibujando flechas entre las ciudades según el orden de visita.
+
+Esta estructura modular en la clase TSP permite no solo organizar mejor el código, sino también facilita la realización de pruebas cambiando parámetros y evaluando el desempeño del algoritmo en distintas instancias del problema.
 
 
 ## Resultados
@@ -236,8 +269,8 @@ En la clase TSP se agrupan todos los métodos necesarios para resolver el proble
     4     |    70    |    2000     |  1.0  | 1.5  | 0.2 | 387.95  | [22, 19, 49, 15, 45, 43, 33, 34, 35, 38, 39, 37, 36, 47, 23, 4, 14, 5, 3, 24, 11, 27, 26, 25, 46, 12, 13, 51, 10, 50, 32, 42, 9, 8, 7, 40, 18, 44, 31, 48, 0, 21, 30, 17, 2, 16, 20, 41, 6, 1, 29, 28, 22]      |    7662     |1.59 
     5     |    70    |    2000     |  1.5  | 1.5  | 0.1 | 380.43  | [22, 19, 49, 28, 15, 45, 43, 33, 34, 35, 38, 39, 37, 36, 47, 23, 4, 14, 5, 3, 24, 11, 27, 26, 25, 46, 12, 13, 51, 10, 50, 32, 42, 9, 8, 7, 40, 18, 44, 31, 48, 0, 21, 30, 17, 2, 16, 20, 29, 41, 6, 1, 22]        |    7755     |2.82 
     6     |    80    |    2000     |  1.5  | 1.5  | 0.2 | 497.502 | [45, 43, 33, 34, 35, 38, 39, 37, 36, 47, 23, 4, 14, 5, 3, 24, 11, 27, 26, 25, 46, 12, 13, 51, 10, 50, 32, 42, 9, 8, 7, 40, 18, 44, 31, 48, 0, 21, 30, 17, 2, 16, 20, 41, 6, 1, 29, 22, 19, 49, 15, 28, 45]      |    7679     |1.81 
-    7     |    80    |    2000     |  1.0  | 1.0  | 0.2 | 490.30  | [35, 34, 33, 43, 15, 45, 36, 37, 39, 38, 47, 23, 4, 14, 5, 3, 24, 11, 27, 26, 25, 46, 12, 13, 51, 10, 50, 32, 42, 9, 8, 7, 40, 18, 44, 2, 16, 20, 41, 6, 1, 29, 28, 49, 19, 22, 30, 17, 21, 0, 48, 31, 35]  |    7798     | 
-    8 |    20    |    1000     |  0.5  | 0.5  | 0.1 |  58.18  |   |  |
+    7     |    80    |    2000     |  1.0  | 1.0  | 0.2 | 490.30  | [35, 34, 33, 43, 15, 45, 36, 37, 39, 38, 47, 23, 4, 14, 5, 3, 24, 11, 27, 26, 25, 46, 12, 13, 51, 10, 50, 32, 42, 9, 8, 7, 40, 18, 44, 2, 16, 20, 41, 6, 1, 29, 28, 49, 19, 22, 30, 17, 21, 0, 48, 31, 35]  |    7798     |3.39
+    8     |    80    |    2000     |  1.0  | 1.5  | 0.2 |  520.68  | [43, 33, 34, 35, 38, 39, 37, 36, 47, 23, 4, 14, 5, 3, 24, 11, 27, 26, 25, 46, 12, 13, 51, 10, 50, 32, 42, 9, 8, 7, 40, 18, 44, 31, 48, 0, 21, 30, 17, 2, 16, 20, 41, 6, 1, 29, 28, 49, 19, 22, 15, 45, 43]  |    7676     |1.78
     9 |    20    |    1000     |  0.5  | 0.5  | 0.1 |  58.18  |   |  |
     10|    20    |    1000     |  0.5  | 0.5  | 0.1 |  58. 18 |   |  |
 - **KroA100:** 
