@@ -1,13 +1,22 @@
-# 🐜 Algoritmo de Colonias de Hormigas para el Problema del Agente Viajero (TSP)
-### 📌 Informe técnico desarrollado en Python
 
-## 📚 Tabla de Contenido
-- [🐜 Algoritmo de Colonias de Hormigas para el Problema del Agente Viajero (TSP)](#-algoritmo-de-colonias-de-hormigas-para-el-problema-del-agente-viajero-tsp)
-    - [📌 Informe técnico desarrollado en Python](#-informe-técnico-desarrollado-en-python)
-  - [📚 Tabla de Contenido](#-tabla-de-contenido)
-  - [📌 Introducción](#-introducción)
-  - [🧭 Descripción del Problema TSP](#-descripción-del-problema-tsp)
-  - [🐜 Descripción del Algoritmo de Colonias de Hormigas (ACO)](#-descripción-del-algoritmo-de-colonias-de-hormigas-aco)
+
+<Center> 
+
+# Algoritmo de Colonias de Hormigas para el Problema del Agente Viajero (TSP)
+
+### Informe técnico desarrollado en Python
+</Center>
+
+
+## Tabla de Contenido
+- [Algoritmo de Colonias de Hormigas para el Problema del Agente Viajero (TSP)](#algoritmo-de-colonias-de-hormigas-para-el-problema-del-agente-viajero-tsp)
+    - [Informe técnico desarrollado en Python](#informe-técnico-desarrollado-en-python)
+  - [Tabla de Contenido](#tabla-de-contenido)
+  - [Introducción](#introducción)
+  - [Descripción del Problema TSP](#descripción-del-problema-tsp)
+  - [Descripción del Algoritmo de Colonias de Hormigas (ACO) en Python](#descripción-del-algoritmo-de-colonias-de-hormigas-aco-en-python)
+    - [Se importan las librerías necesarias para realizar el algoritmo](#se-importan-las-librerías-necesarias-para-realizar-el-algoritmo)
+    - [Se crea la clase TSP](#se-crea-la-clase-tsp)
   - [Resultados](#resultados)
     - [Instancias Pequeñas:](#instancias-pequeñas)
       - [Tablas](#tablas)
@@ -16,7 +25,7 @@
     - [Instancias Medianas:](#instancias-medianas)
       - [Tablas](#tablas-1)
 
-## 📌 Introducción
+## Introducción
 
 En este informe se aborda la implementación del algoritmo de Colonias de Hormigas (Ant Colony Optimization, ACO) para resolver el Problema del Agente Viajero (TSP). El objetivo del TSP es encontrar la ruta más corta posible que permita visitar un conjunto de ciudades una sola vez y regresar al punto de partida. Aunque puede parecer sencillo, este problema se vuelve muy complejo a medida que aumenta el número de ciudades, por lo que se utilizan algoritmos metaheurísticos para encontrar soluciones aproximadas.
 
@@ -26,33 +35,54 @@ La implementación fue desarrollada en Python, utilizando una estructura general
 
 A lo largo del trabajo se realizaron distintos experimentos con los parámetros del algoritmo (como el número de hormigas, el valor de alfa y beta, la tasa de evaporación, entre otros) y se evaluó el rendimiento en función del tiempo de ejecución, la calidad de la solución, y la cercanía a la solución óptima. El propósito de este informe es poner en práctica lo aprendido en clase sobre metaheurísticas y demostrar cómo un algoritmo bioinspirado puede ser una alternativa eficiente frente a problemas difíciles de resolver por métodos exactos.
 
-## 🧭 Descripción del Problema TSP
+## Descripción del Problema TSP
 El Problema del Agente Viajero (TSP) busca encontrar la ruta más corta para visitar un conjunto de ciudades exactamente una vez y regresar al punto de partida. Aunque parece simple, es un problema complejo ya que el número de posibles rutas crece rápidamente con más ciudades.
 
 Este tipo de problema es muy común en áreas como logística y planificación de rutas. No hay un método eficiente para resolverlo de forma exacta cuando las instancias son grandes.
 
 En este trabajo se usaron archivos .tsp del repositorio TSPLIB95, que contienen las coordenadas de las ciudades. A partir de estos datos, se aplicó el algoritmo de Colonias de Hormigas para encontrar la solución optima o soluciones aproximadas al problema.
 
-## 🐜 Descripción del Algoritmo de Colonias de Hormigas (ACO)
+## Descripción del Algoritmo de Colonias de Hormigas (ACO) en Python
 El algoritmo de Colonias de Hormigas (Ant Colony Optimization o ACO) se basa en cómo las hormigas reales encuentran caminos cortos entre su nido y una fuente de alimento. En este caso, usamos esa lógica para encontrar rutas óptimas en el problema del Agente Viajero (TSP).
 
 Cada “hormiga” del algoritmo representa una posible solución: una ruta que recorre todas las ciudades. Las decisiones de cada hormiga se basan en dos cosas: la cantidad de feromonas (que refleja qué tan buena ha sido una ruta) y la distancia (preferimos rutas más cortas). Al finalizar cada iteración, se actualizan las feromonas: se evaporan un poco, pero se refuerzan en los caminos más prometedores.
 
 A continuación se explicara detalladamente la implementación:
 
-import numpy as np
-import matplotlib.pyplot as plt
-import tsplib95
-from tsplib95 import load
-import time
+### Se importan las librerías necesarias para realizar el algoritmo
+  <pre>  import numpy as np 
+  import matplotlib.pyplot as plt 
+  import tsplib95 from tsplib95 
+  import load import time  </pre>
 
-Se importan las librerias necesarias para realizar el algoritmo, donde la libreria numpy nos permite trabajar con matrices, esto es ecencial al momento de crear la matriz de distancias y poder hacer operaciones matriciales con este.
+  - **numpy:** Nos permite trabajar de manera eficiente con matrices y realizar operaciones matemáticas, fundamentales para la creación de la matriz de distancias entre las ciudades y para los cálculos durante el proceso iterativo.
 
-Con matplotlib nos permite graficar la ruta encontrada tras realizar el algoritmo.
+  - **matplotlib:** Es utilizado para graficar y visualizar la ruta óptima encontrada, facilitando la interpretación visual de los resultados.
 
-La libreria tsplib95 nos permite poder leer los archivos .tsp y seguidamente poder sacar las distancias entre ciudades del mismo archivo
+  - **tsplib95:** Permite leer y procesar archivos con extensión .tsp, extrayendo la información necesaria para construir la matriz de distancias a partir de las coordenadas de las ciudades.
 
-La libreria time nos permite tomar el tiempo de ejcución que le toma al algoritmo completarce
+  - **time:** Se utiliza para medir el tiempo de ejecución del algoritmo, lo que ayuda a evaluar el desempeño en términos de eficiencia.
+
+### Se crea la clase TSP
+En la clase TSP se agrupan todos los métodos necesarios para resolver el problema utilizando el algoritmo de Colonias de Hormigas. Entre los métodos implementados se encuentran
+
+  - **Cargar Parámetros Iniciales:**
+
+    El método load_initial_variables se encarga de recibir y asignar los parámetros iniciales necesarios para ejecutar el algoritmo. Este método recibe los siguientes parámetros:
+
+    - **file_path (str):** La ruta del archivo .tsp que contiene la instancia del problema.
+
+    - **n_ants (int):** La cantidad de hormigas que se utilizarán. Este valor define el tamaño del espacio de soluciones explorado en cada iteración.
+
+    - **n_iters (int):** El número de iteraciones que realizará el algoritmo, lo que impacta directamente en la calidad de la solución y en el tiempo de ejecución.
+
+    - **alpha (float):** Parámetro que controla la influencia de las feromonas en la decisión de la hormiga para elegir la siguiente ciudad.
+
+    - **beta (float):** Parámetro que determina la importancia de la distancia a la hora de seleccionar el siguiente nodo.
+
+    - **ro (float):** Tasa de evaporación de feromonas, la cual es crucial para evitar que el algoritmo se estanque en soluciones subóptimas.
+
+
 
 ## Resultados
 

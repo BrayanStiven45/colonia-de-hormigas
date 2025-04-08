@@ -1,4 +1,3 @@
-from turtle import distance
 import numpy as np
 import matplotlib.pyplot as plt
 import tsplib95
@@ -19,7 +18,6 @@ class TSP:
       beta (float): The influence of distance on the path selection.
       ro (float): The pheromone evaporation rate.
       """
-      self.file_path = file_path
       self.n_ants = n_ants
       self.n_iters = n_iters
       self.alpha = alpha
