@@ -8,16 +8,17 @@ class TSP:
 
    def load_initial_variables(self, file_path: str, n_ants: int, n_iters: int, alpha: float = 1, beta: float = 1 , ro: float = 0.5):
       """
-      Initialize the TSP instance with the given parameters.
-      
-      Parameters:
-      file_path (str): The path to the TSP instance file.
-      n_ants (int): The number of ants to use in the algorithm.
-      n_iters (int): The number of iterations for the algorithm.
-      alpha (float): The influence of pheromone on the path selection.
-      beta (float): The influence of distance on the path selection.
-      ro (float): The pheromone evaporation rate.
+      Inicializa la instancia del problema TSP con los parámetros dados.
+
+      Parámetros:
+      - file_path (str): Ruta del archivo .tsp con los datos de la instancia.
+      - n_ants (int): Número de hormigas que participarán en el algoritmo.
+      - n_iters (int): Número de iteraciones totales del algoritmo.
+      - alpha (float): Influencia de las feromonas en la elección del camino.
+      - beta (float): Influencia de la distancia (heurística) en la elección del camino.
+      - ro (float): Tasa de evaporación de las feromonas.
       """
+
       self.n_ants = n_ants
       self.n_iters = n_iters
       self.alpha = alpha
@@ -28,13 +29,14 @@ class TSP:
    #Load the TSP instance from a file
    def load_tsp_instance(self, file_path):
       """
-      Load a TSP instance from a file using tsplib95.
-      
-      Parameters:
-      file_path (str): The path to the TSP instance file.
-      
-      Returns:
-      cities (list): A list of coordinates of the cities in the TSP instance.
+      Carga una instancia del problema TSP desde un archivo .tsp utilizando la librería tsplib95.
+
+      Parámetros:
+      - file_path (str): Ruta del archivo .tsp.
+
+      Retorna:
+      - cities (list): Lista de coordenadas de las ciudades.
+      - d (ndarray): Matriz de distancias entre ciudades.
       """
       problem = tsplib95.load(file_path)
       nodes = problem.node_coords # Load the coordinates of the nodes
@@ -44,6 +46,16 @@ class TSP:
       return cities, d
    
    def calculate_distances(self, cities: tsplib95, n: int):
+      """
+      Calcula la matriz de distancias entre cada par de ciudades usando los pesos definidos en el archivo .tsp.
+
+      Parámetros:
+      - cities (tsplib95): Objeto con los datos del problema TSP cargado.
+      - n (int): Número total de ciudades.
+
+      Retorna:
+      - d (ndarray): Matriz cuadrada con las distancias entre cada ciudad.
+      """
 
       d = np.zeros([n,n])
       
@@ -58,6 +70,13 @@ class TSP:
       return d
 
    def plot_path(self, cities, path):
+      """
+      Dibuja visualmente el recorrido de una solución del TSP usando flechas entre ciudades.
+
+      Parámetros:
+      - cities: Lista de coordenadas de las ciudades.
+      - path: Ruta (orden de visita) generada por el algoritmo.
+      """
       for i in range(len(path) - 1):
          ini = cities[path[i]]
          fin = cities[path[i+1]]
@@ -67,6 +86,20 @@ class TSP:
       plt.arrow(ini[0], ini[1], fin[0] - ini[0], fin[1] - ini[1])
 
    def solve(self):
+      """
+      Ejecuta el algoritmo de Colonias de Hormigas (ACO) para encontrar una solución al TSP.
+
+      - Inicializa la matriz de feromonas.
+      - Por cada iteración, cada hormiga genera una ruta.
+      - Se calcula la probabilidad de moverse a otra ciudad en función de las feromonas y la distancia.
+      - Se actualizan las feromonas reforzando las mejores rutas.
+      - Se guarda la mejor ruta encontrada.
+
+      Retorna:
+      - best_path (list): Ruta óptima encontrada por las hormigas.
+      - best_p_lenght (float): Distancia total de la mejor ruta.
+      - total_time (float): Tiempo de ejecución del algoritmo.
+      """
       n = len(self.cities) #Número de ciudades
       #ejercicio
       #Definir una funcion para calcular la matriz de distancias dij
@@ -154,26 +187,38 @@ class TSP:
    
    def get_cities(self):
       """
-      Returns the coordinates of the cities.
+      Retorna las coordenadas de las ciudades cargadas en la instancia actual.
+
+      Retorna:
+      - cities (ndarray): Arreglo con las coordenadas (x, y) de cada ciudad.
       """
       return self.cities
 
    def get_soluction(self):
       """
-      Returns the best path and its length.
+      Retorna la mejor solución (ruta) encontrada por el algoritmo y su longitud total.
+
+      Retorna:
+      - best_path (list): Ruta óptima.
+      - best_p_lenght (float): Distancia total de dicha ruta.
       """
 
       return self.best_path, self.best_p_lenght
    
    def get_distances(self):
       """
-      Returns the distance of the best path.
+      Retorna la matriz de distancias entre ciudades usada por el algoritmo.
+
+      Retorna:
+      - distances (ndarray): Matriz de distancias.
       """
       return self.distances
 
    def graph_soluction(self):
       """
-      Plot the solution of the TSP problem.
+      Muestra una gráfica con la ruta óptima encontrada por el algoritmo.
+      - Dibuja las ciudades como puntos.
+      - Muestra las conexiones entre ellas según el orden de la mejor ruta.
       """
       plt.scatter(self.cities[:,0],self.cities[:,1], c='blue', alpha=0.5)
 
