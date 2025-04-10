@@ -30,6 +30,7 @@
       - [Tablas](#tablas-2)
       - [Gráficas](#gráficas-2)
       - [Concluciones](#concluciones-2)
+  - [Concluciones Geneales](#concluciones-geneales)
 
 ## Introducción
 
@@ -370,6 +371,24 @@ Esta estructura modular en la clase TSP permite no solo organizar mejor el códi
     9     |120      | 2000      |1   |2  |0.2  |9262  |   [76, 61, 59, 22, 97, 90, 44, 31, 10, 14, 16, 58, 73, 20, 71, 9, 83, 35, 98, 37, 23, 17, 78, 52, 87, 15, 21, 93, 69, 65, 64, 3, 25, 18, 74, 96, 55, 79, 30, 88, 41, 7, 91, 0, 62, 5, 48, 89, 46, 92, 27, 66, 57, 60, 24, 80, 68, 63, 39, 53, 1, 43, 49, 72, 67, 84, 38, 29, 95, 77, 51, 4, 36, 32, 75, 12, 94, 81, 47, 99, 70, 40, 13, 2, 42, 45, 28, 33, 82, 54, 11, 26, 85, 34, 19, 56, 8, 6, 86, 50, 76]   |  22435.0  | 5.42
     10    |10      | 2000      |1   |2  |0.2  |58  |   [27, 92, 66, 57, 60, 24, 80, 68, 63, 39, 53, 1, 43, 49, 72, 67, 84, 29, 38, 95, 77, 51, 4, 36, 32, 12, 75, 94, 81, 47, 99, 70, 40, 13, 2, 45, 42, 28, 33, 82, 54, 11, 26, 34, 85, 19, 56, 8, 6, 86, 50, 59, 76, 61, 22, 97, 90, 44, 31, 10, 14, 16, 58, 73, 20, 71, 9, 83, 35, 98, 37, 23, 17, 78, 52, 87, 15, 21, 93, 69, 65, 64, 3, 25, 18, 89, 48, 5, 62, 0, 91, 7, 41, 88, 30, 79, 55, 96, 74, 46, 27]   |  23449.0  | 10.18
 
+  - **st70:** 
+  
+    **Optimal path length 675**
+  
+    Config|Hormigas|Iteraciones|Alpha |Beta | Ro  |Time(s)| Path        |Path Length | Gap (%)
+    :----:|:------:|:---------:|:----:|:---:|:---:|:-----:|:-----------:|:----------:|:---:
+    1     |10      | 2000      |1   |2  |0.2  |31 | [20, 33, 11, 32, 53, 61, 47, 66, 55, 10, 63, 64, 50, 49, 57, 36, 46, 15, 0, 35, 22, 37, 12, 28, 69, 30, 68, 34, 58, 62, 21, 65, 56, 23, 14, 18, 6, 1, 3, 17, 41, 5, 40, 42, 16, 8, 39, 60, 38, 44, 24, 45, 26, 67, 43, 29, 19, 13, 27, 7, 25, 48, 54, 2, 31, 52, 4, 9, 51, 59, 20]  |706    |4.59
+    2     |100      | 1000      |1   |2  |0.2  |157  |   [41, 17, 3, 1, 6, 31, 2, 7, 27, 25, 48, 54, 18, 23, 14, 56, 65, 21, 62, 58, 37, 34, 69, 28, 12, 30, 68, 22, 46, 15, 0, 35, 57, 36, 49, 50, 55, 64, 63, 10, 47, 66, 53, 61, 33, 20, 11, 32, 59, 51, 9, 4, 52, 5, 40, 42, 16, 8, 39, 60, 38, 44, 24, 45, 26, 67, 43, 29, 19, 13, 41]   |  715  | 5.93
+    3     |100      | 2000      |1   |2  |0.2  |314  |   [8, 6, 86, 50, 60, 24, 80, 68, 63, 39, 53, 1, 43, 49, 72, 67, 84, 38, 29, 95, 77, 51, 4, 36, 32, 75, 12, 94, 81, 47, 99, 70, 40, 13, 2, 42, 45, 28, 33, 82, 54, 11, 26, 85, 34, 19, 56, 61, 59, 76, 22, 97, 90, 44, 31, 10, 16, 14, 58, 73, 20, 71, 9, 83, 35, 98, 37, 23, 17, 78, 52, 87, 15, 21, 93, 69, 65, 64, 3, 25, 96, 74, 18, 89, 48, 5, 62, 0, 91, 7, 41, 88, 30, 79, 55, 46, 92, 27, 66, 57, 8]   |  708  | 4.89
+    4     |10      | 2000      |1   |2  |0.1  |31  |  [64, 50, 55, 63, 10, 47, 66, 53, 61, 32, 11, 33, 20, 16, 42, 40, 5, 17, 41, 3, 1, 6, 31, 2, 43, 67, 8, 39, 60, 38, 44, 24, 45, 26, 29, 19, 13, 27, 7, 25, 48, 54, 18, 23, 14, 56, 34, 68, 30, 69, 12, 28, 35, 0, 15, 46, 22, 37, 21, 62, 58, 65, 52, 4, 9, 51, 59, 36, 57, 49, 64]  |  732  | 8.44
+    5     |10     | 2000      |1  |2  |0.3  |279  |  [59, 51, 9, 4, 52, 49, 57, 36, 46, 15, 0, 35, 28, 12, 30, 68, 34, 69, 22, 37, 58, 62, 21, 65, 56, 14, 23, 18, 6, 1, 3, 17, 41, 40, 5, 16, 42, 2, 31, 7, 25, 48, 54, 27, 29, 19, 13, 43, 67, 8, 39, 60, 38, 44, 24, 45, 26, 20, 33, 11, 32, 53, 61, 47, 66, 55, 10, 63, 64, 50, 59]   |  734  | 8.74
+    6     |10      | 2000      |1   |2.5  |0.2  |31  |   [13, 19, 29, 43, 67, 8, 39, 60, 38, 44, 24, 45, 26, 42, 16, 20, 33, 11, 59, 32, 53, 61, 47, 66, 55, 64, 50, 10, 63, 49, 9, 51, 52, 4, 57, 36, 46, 15, 0, 35, 22, 37, 12, 28, 30, 68, 34, 69, 58, 21, 62, 65, 14, 56, 23, 18, 6, 1, 3, 17, 41, 40, 5, 31, 2, 7, 25, 48, 54, 27, 13]  |  745  | 10.37
+    7     |10      | 2000      |1.2   |2  |0.2  |32  |   [10, 47, 66, 53, 61, 32, 39, 60, 38, 44, 24, 45, 26, 8, 67, 43, 13, 19, 29, 2, 31, 27, 7, 25, 48, 54, 18, 6, 1, 3, 17, 41, 5, 40, 42, 16, 20, 33, 11, 59, 51, 9, 4, 52, 65, 21, 58, 37, 22, 0, 35, 28, 12, 69, 30, 68, 34, 56, 23, 14, 62, 36, 57, 46, 15, 49, 50, 55, 64, 63, 10]  |  754  | 11.70
+    8     |10      | 2000      |0.8   |2  |0.2  |31 |  [10, 47, 66, 55, 64, 50, 49, 57, 36, 46, 15, 0, 35, 22, 12, 28, 69, 30, 68, 37, 34, 58, 21, 62, 65, 56, 23, 14, 18, 25, 48, 54, 27, 7, 2, 31, 6, 1, 3, 17, 41, 40, 5, 52, 4, 9, 51, 59, 11, 33, 20, 16, 42, 8, 39, 60, 38, 44, 24, 45, 26, 29, 19, 13, 43, 67, 61, 53, 32, 63, 10]  |  744  | 10.22
+    9     |100      | 2000      |1   |2  |0.2  |309  |  [39, 60, 38, 44, 24, 45, 26, 42, 16, 20, 33, 11, 59, 32, 53, 61, 47, 66, 10, 63, 64, 50, 55, 51, 9, 52, 4, 57, 36, 49, 46, 15, 0, 35, 22, 37, 68, 30, 69, 28, 12, 34, 58, 21, 62, 65, 56, 14, 23, 18, 6, 1, 3, 17, 41, 40, 5, 31, 2, 7, 25, 48, 54, 27, 13, 19, 29, 43, 67, 8, 39]  |  723  | 7.11
+    10    |140      | 2000      |1   |2  |0.2  |445  |   [57, 36, 46, 15, 0, 35, 22, 37, 68, 30, 69, 28, 12, 34, 58, 21, 62, 65, 56, 23, 14, 31, 2, 43, 67, 8, 39, 60, 38, 44, 24, 45, 26, 29, 19, 13, 27, 7, 25, 48, 54, 18, 6, 1, 3, 17, 41, 40, 5, 42, 16, 20, 33, 11, 59, 32, 53, 61, 47, 66, 55, 10, 63, 64, 50, 49, 9, 51, 4, 52, 57]  |  718  | 6.37
+
+
 
 #### Gráficas
 - **Berlin52:** Mejor ruta encontrada en el problema Berlin52
@@ -380,21 +399,26 @@ Esta estructura modular en la clase TSP permite no solo organizar mejor el códi
   
     ![kroA100](Graficas\kroA100.png)
 
+- **st70:** Mejor ruta encontrada en el problema st70
+  
+    ![st70](Graficas\st70.png)
+
+
 #### Concluciones
 
   - **Berlin52:**
 
     En la tabla para las instancias TSP de "Berlin52", utilizando los 10 diferentes parámetros evaluados para este problema, ninguna configuración alcanzó la solución óptima; sin embargo, se pudieron encontrar soluciones locales muy cercanas a la óptima. En particular, se profundizará en la configuración número 8, que presentó la solución más próxima al óptimo. A continuación, se detallan los valores de los parámetros utilizados en esta configuración:
 
-    *Número de hormigas: 90*
+    **Número de hormigas: 90**
 
-    *Número de iteraciones: 2000*
+    **Número de iteraciones: 2000**
 
-    *Alpha: 1.0*
+    **Alpha: 1.0**
 
-    *Beta: 1.5*
+    **Beta: 1.5**
 
-    *Ro: 0.2*
+    **Ro: 0.2**
 
     Con esta configuración se alcanzó un gap del 0.72%, obteniéndose una solución con una longitud de 7596, en comparación con la solución óptima de 7542. Esta solución se halló en un tiempo de 361.75 segundos.
 
@@ -423,6 +447,26 @@ Esta estructura modular en la clase TSP permite no solo organizar mejor el códi
     [57, 76, 19, 56, 6, 8, 86, 50, 60, 24, 80, 68, 63, 39, 53, 1, 43, 49, 72, 67, 84, 38, 29, 95, 77, 51, 4, 36, 32, 75, 12, 94, 81, 47, 99, 70, 40, 13, 2, 42, 45, 28, 33, 82, 54, 11, 26, 85, 34, 61, 59, 22, 97, 90, 44, 31, 10, 14, 16, 58, 73, 20, 71, 9, 83, 35, 98, 37, 23, 17, 78, 52, 87, 15, 21, 93, 69, 65, 64, 3, 25, 18, 74, 96, 55, 79, 30, 88, 41, 7, 91, 0, 62, 5, 48, 89, 46, 92, 27, 66, 57]
 
     Aunque no se logró alcanzar la solución óptima, los resultados obtenidos muestran que el algoritmo tiene un buen desempeño. Ajustando adecuadamente los parámetros, es posible reducir significativamente el gap. Esto demuestra que el algoritmo es capaz de ofrecer soluciones competitivas y eficientes para problemas más complejos como kroA100.
+
+  - **st70:**
+
+    En el caso de las instancias del problema TSP "st70", no se logró alcanzar la solución óptima (longitud óptima: 675), pero sí se obtuvieron soluciones locales bastante cercanas. La configuración que presentó el menor gap fue la configuración número 1 de la tabla. A continuación, se detallan los valores de los parámetros utilizados en dicha configuración:
+
+    **Número de hormigas: 10**
+
+    **Número de iteraciones: 2000**
+
+    **Alpha: 1.0**
+
+    **Beta: 2.0**
+
+    **Ro: 0.2**
+
+    Con esta configuración se alcanzó un gap del 4.59%, el más bajo entre todas las configuraciones probadas. La solución encontrada tuvo una longitud de 706, en comparación con la óptima de 675. Este resultado se obtuvo en un tiempo de 31 segundos, generando la siguiente ruta:
+
+    [20, 33, 11, 32, 53, 61, 47, 66, 55, 10, 63, 64, 50, 49, 57, 36, 46, 15, 0, 35, 22, 37, 12, 28, 69, 30, 68, 34, 58, 62, 21, 65, 56, 23, 14, 18, 6, 1, 3, 17, 41, 5, 40, 42, 16, 8, 39, 60, 38, 44, 24, 45, 26, 67, 43, 29, 19, 13, 27, 7, 25, 48, 54, 2, 31, 52, 4, 9, 51, 59, 20]
+
+    Aunque no se alcanzó la solución óptima, los resultados evidencian que el algoritmo es capaz de encontrar soluciones de buena calidad. Sin embargo, también se observa que para instancias más grandes o complejas, es necesario realizar una búsqueda más exhaustiva y ajustada de parámetros para incrementar la probabilidad de hallar la solución óptima.
 
 
 ### Instancias Grandes:
@@ -456,4 +500,36 @@ Esta estructura modular en la clase TSP permite no solo organizar mejor el códi
 #### Concluciones
 
   - **Lin105:**
+    En las pruebas realizadas con la instancia TSP "lin105", ninguna de las configuraciones probadas alcanzó la solución óptima (longitud óptima: 14379). Sin embargo, se obtuvieron resultados bastante cercanos al óptimo, siendo la configuración número 5 la que presentó el menor gap. A continuación, se detallan los valores de los parámetros utilizados en esta configuración:
+
+    **Número de hormigas: 100**
+
+    **Número de iteraciones: 1000**
+
+    **Alpha: 1.0**
+
+    **Beta: 1.5**
+    
+    **Ro: 0.1**
+
+    Con esta configuración se obtuvo una ruta con una longitud de 15278, lo que representa un gap del 6.26% respecto al valor óptimo. Esta solución fue encontrada en un tiempo de 372.86 segundos, lo cual es un resultado eficiente considerando la complejidad de esta instancia.
+
+    La mejor ruta encontrada con esta configuración fue la siguiente:
+
+    [68, 66, 64, 65, 92, 91, 95, 93, 94, 96, 97, 98, 99, 100, 102, 103, 101, 104, 105, 1, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 67, 3, 5, 2, 69, 68]
+
+    Aunque no se logró alcanzar la solución óptima, los resultados muestran que el algoritmo de colonia de hormigas es capaz de ofrecer soluciones cercanas y eficientes. Con una mayor exploración de combinaciones de parámetros o un número mayor de iteraciones, es probable que se logren soluciones aún más próximas al óptimo.
+
+## Concluciones Geneales
+
+  - El algoritmo de colonia de hormigas ha demostrado ser una herramienta muy efectiva para encontrar soluciones de alta calidad a problemas del tipo TSP. Incluso es capaz de acercarse o alcanzar la solución óptima, siempre y cuando se realice una búsqueda adecuada dentro de un espacio amplio de configuraciones de parámetros. La clave está en encontrar una combinación que equilibre exploración y explotación.
+
+  - Para problemas TSP de gran tamaño y complejidad, encontrar una configuración adecuada de parámetros resulta considerablemente más difícil que en problemas de menor escala. Esto requiere un ajuste más fino y pruebas más exhaustivas.
+
+  - Las variables alpha y beta deben configurarse cuidadosamente según las características del problema. En algunos casos es más eficiente que las decisiones de las hormigas estén más influenciadas por la distancia entre ciudades que por la cantidad de feromonas (mayor peso de beta), mientras que en otros sucede lo contrario. Por tanto, se debe encontrar un equilibrio adecuado entre ambos factores para guiar de forma efectiva la búsqueda de la mejor solución.
+
+  - El valor de rho (tasa de evaporación de feromonas) debe permitir conservar las trayectorias más prometedoras (con un nivel de feromonas alto), pero también asegurar que las rutas menos efectivas vayan perdiendo relevancia con el tiempo. Un valor mal calibrado puede llevar a una convergencia prematura o a una exploración excesiva.
+
+  - El número de hormigas y de iteraciones influye directamente en la amplitud de la búsqueda del espacio de soluciones. A mayor cantidad de hormigas e iteraciones, mayor capacidad de exploración, aunque también se incrementa el tiempo de ejecución. Por ello, es importante elegir valores adecuados para alpha y beta que ayuden a guiar eficientemente la búsqueda y reduzcan la complejidad computacional del algoritmo.
+
       
